@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useStash } from "@/lib/stash-store";
 
-export const Route = createFileRoute("/item/$id")({
+export const Route = createFileRoute("/item/$id/")({
   head: () => ({
     meta: [
       { title: "Item details — Stash" },
