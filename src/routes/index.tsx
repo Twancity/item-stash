@@ -112,7 +112,7 @@ function EmptyState() {
       <p className="mx-auto mt-2 max-w-sm text-muted-foreground">
         Add your first item so you never have to wonder where you put it again.
       </p>
-      <Button asChild size="lg" className="mt-6 h-13 rounded-2xl px-6 text-base">
+      <Button asChild size="lg" className="mt-6 h-14 rounded-2xl px-6 text-base">
         <Link to="/add">
           <Plus className="size-5" aria-hidden="true" />
           Add Item
