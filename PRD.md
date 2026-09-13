@@ -9,7 +9,9 @@ Stash is a responsive, mobile-first web application for recording where househol
 
 ## 2. Problem Statement
 
-Household items are stored in places people cannot recall later — bins, drawers, shelves, closets, attics. The cost is repeated searching, duplicate purchases, and frustration. Existing home-inventory tools optimize for insurance valuation or asset cataloging, which requires heavy data entry and does not solve fast retrieval.
+Household items are stored in places people cannot recall later — bins, drawers, shelves, closets, attics. The assumed cost is repeated searching, duplicate purchases, and frustration.
+
+*Unvalidated hypothesis (not yet tested with users):* existing home-inventory tools are oriented toward cataloging and valuation rather than fast retrieval, leaving the "where is it right now?" question underserved.
 
 ## 3. Target Users
 
