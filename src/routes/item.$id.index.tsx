@@ -81,7 +81,7 @@ function ItemDetails() {
             <Button
               asChild
               size="lg"
-              className="h-14 flex-1 rounded-2xl text-base"
+              className="h-14 w-full rounded-2xl text-base sm:flex-1"
             >
               <Link to="/item/$id/edit" params={{ id: item.id }}>
                 <Pencil className="size-5" aria-hidden="true" />
@@ -94,7 +94,7 @@ function ItemDetails() {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="h-14 flex-1 rounded-2xl border-destructive/40 text-base text-destructive hover:bg-destructive/10 hover:text-destructive"
+                  className="h-14 w-full rounded-2xl border-destructive sm:flex-1/40 text-base text-destructive hover:bg-destructive/10 hover:text-destructive"
                 >
                   <Trash2 className="size-5" aria-hidden="true" />
                   Delete Item
