@@ -94,7 +94,7 @@ function ItemDetails() {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="h-14 w-full rounded-2xl border-destructive sm:flex-1/40 text-base text-destructive hover:bg-destructive/10 hover:text-destructive"
+                  className="h-14 w-full rounded-2xl border-destructive/40 text-base text-destructive hover:bg-destructive/10 hover:text-destructive sm:flex-1"
                 >
                   <Trash2 className="size-5" aria-hidden="true" />
                   Delete Item
