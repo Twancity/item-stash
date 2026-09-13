@@ -32,8 +32,9 @@ export function ItemForm({
       name: name.trim(),
       room: room.trim(),
       location: location.trim(),
-      notes: notes.trim() || undefined,
+      ...(notes.trim() ? { notes: notes.trim() } : {}),
     });
+
   }
 
   return (
