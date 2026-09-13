@@ -26,7 +26,7 @@ No automated test suite exists for V1. Results below come from manual execution 
 - Partial-name search was verified with the term "Christmas" returning "Christmas Lights".
 - Persistence was verified by adding an item, reloading the browser, and confirming the item was still listed.
 - Deletion was verified to require an explicit confirmation before the item was removed.
-- Defects found during testing (layout and interaction issues) were fixed and re-verified before V1 was marked complete.
+- No defect history was documented for V1; only the pass/fail outcome of each acceptance criterion above was recorded.
 
 ## Not Covered in V1
 
