@@ -12,9 +12,11 @@ Add an item with room/area, exact location, and optional notes. Real-time partia
 
 ---
 
-## V1.1 — Voice Search — *Planned concept*
+## V1.1 — Voice Search — **Completed**
 
-Microphone input on the Home screen converts speech to text and filters the inventory in real time, so a user can search hands-free while standing in a garage or holding a box.
+A microphone control in the Home search field uses browser-native speech recognition to turn spoken words into the search term, reusing the existing real-time partial-name filter. Unsupported browsers, denied permission, and recognition errors fall back to manual search with a short message.
+
+**Result:** 10 / 10 acceptance criteria passed (manual testing).
 
 ---
 

@@ -1,7 +1,7 @@
-# Stash — Product Requirements Document (V1)
+# Stash — Product Requirements Document (V1, plus V1.1 enhancement)
 
 **Tagline:** Remember where you put everything.
-**Status:** V1 MVP completed.
+**Status:** V1 MVP completed. V1.1 Voice Search completed.
 
 ## 1. Product Overview
 
@@ -119,12 +119,52 @@ These are the metrics defined to evaluate Stash once it is in real use. No data 
 - **Exact location given visual dominance.** The details screen is designed around the one field the user actually came for.
 - **Sample data seeded on first run.** Makes the search behavior legible immediately instead of presenting a cold empty app during development and demos.
 
-## 13. Future Roadmap
+## 13. V1.1 Enhancement — Voice Search (Completed)
+
+The V1 sections above are preserved as written at the time of the MVP. This section records the first scoped enhancement shipped after V1.
+
+**Problem / opportunity.** Typing into the search field is the remaining friction in retrieval, especially one-handed in a garage or while holding a box. Voice input shortens the path to "Where did I put it?" without changing the data model.
+
+**User story.** As a Stash user, I want to search by voice so I can find an item without typing.
+
+**Scope.**
+- Microphone control inside the existing Home search field, with an accessible label and a mobile-friendly touch target
+- Browser-native speech-to-text (Web Speech API, including the WebKit-prefixed variant); the transcript populates the existing search input
+- The existing real-time partial-name filter is reused unchanged — no second search engine, no separate voice-results screen
+- Visible and accessible listening state; the user can stop or cancel listening
+- Manual typing preserved as the fallback and as the primary input path
+
+**Non-goals.**
+- Voice Add (spoken item capture) — remains V1.2
+- AI interpretation or conversational retrieval — remains V2
+- Backend services, cloud sync, accounts, or authentication changes
+- New third-party or paid dependencies
+
+**Graceful degradation.** Unsupported browsers, denied microphone permission, and recognition errors each show a concise message and leave manual search fully available.
+
+**Acceptance criteria — V1.1 results**
+
+| # | Criterion | Result |
+| --- | --- | --- |
+| 1 | Microphone control appears in the existing search field | PASS |
+| 2 | Tapping microphone starts listening when supported | PASS |
+| 3 | Spoken item name populates the search field | PASS |
+| 4 | Spoken partial item name filters the existing list correctly | PASS |
+| 5 | User can stop/cancel voice input | PASS |
+| 6 | Manual text search still works normally | PASS |
+| 7 | Permission denial/failure does not crash the app and shows a helpful message | PASS |
+| 8 | Unsupported browsers fall back gracefully to manual search | PASS |
+| 9 | Existing V1 add/edit/delete/details/localStorage workflows remain unchanged | PASS |
+| 10 | Mobile and desktop layouts remain usable | PASS |
+
+**Overall: 10 / 10 PASS** (manual acceptance testing).
+
+## 14. Future Roadmap
 
 | Version | Theme | Status |
 | --- | --- | --- |
 | V1 | MVP | Completed |
-| V1.1 | Voice Search | Planned concept |
+| V1.1 | Voice Search | Completed |
 | V1.2 | Voice Add | Planned concept |
 | V2 | Conversational Retrieval | Planned concept |
 | V3 | Photo recognition / storage-bin image assistance | Planned concept |
