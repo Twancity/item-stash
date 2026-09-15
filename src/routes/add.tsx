@@ -36,6 +36,7 @@ function AddItem() {
       </Link>
       <h1 className="mt-4 mb-8 text-3xl font-bold sm:text-4xl">Add an item</h1>
       <ItemForm
+        enableVoice
         submitLabel="Save Item"
         onSubmit={(values) => {
           addItem(values);
