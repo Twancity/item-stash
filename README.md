@@ -2,84 +2,120 @@
 
 **Remember where you put everything.**
 
+Stash is a working, mobile-first product built to solve one simple household problem: **“Where did I put it?”**
+
+It demonstrates an end-to-end product workflow from problem framing and MVP definition through implementation, acceptance testing, iteration, and roadmap planning.
+
+## Product Snapshot
+
+| Area | Current state |
+| --- | --- |
+| Product stage | **V1, V1.1, and V1.2 shipped** |
+| Core job | Record where an item is stored and retrieve that location later |
+| Product artifacts | [PRD](PRD.md) · [Roadmap](docs/ROADMAP.md) · [Acceptance Testing](docs/TESTING.md) |
+| Persistence | Browser localStorage |
+| Voice capability | Browser-native Web Speech API |
+| Build approach | Mobile-first responsive web application |
+| Validation | Manual acceptance testing against predefined criteria |
+
 ## Problem
 
-People store household items — tools, seasonal decorations, cables, documents, spare parts, supplies — in places they can't recall weeks or months later. The result is wasted time searching, duplicate purchases, and low-grade household friction. Stash exists to answer one question faster: *"Where did I put it?"*
+People store household items — tools, seasonal decorations, cables, documents, spare parts, supplies — in places they cannot recall weeks or months later. The result is wasted time searching, duplicate purchases, and low-grade household friction.
+
+Stash exists to answer one question faster:
+
+> **Where did I put it?**
 
 ## Target Users
 
 - Homeowners and renters managing storage across multiple rooms
 - People with garages, basements, attics, or bin-based storage systems
 - Households that store seasonal items for long stretches
-- Anyone who buys a replacement because they can't find the original
+- Anyone who has bought a replacement because they could not find the original
 
-## MVP Features (V1)
+## Product Goal
 
-- Add an item with **Item Name**, **Room / Area**, and **Exact Location** (all required)
-- Optional **Notes** field for extra context
-- **Real-time partial-name search** on the Home screen
-- **Item Details** screen with the exact storage location as the dominant visual element
-- **Edit** any field of an existing item
-- **Delete** an item with a confirmation step
-- **localStorage persistence** — items survive a browser refresh
-- **Responsive** mobile-first layout that also works on desktop
-- No login, no account, no setup
+Reduce the time it takes a person to retrieve the location of a stored household item while keeping capture effort low enough that logging items does not feel like a chore.
 
-## Shipped Enhancement: V1.1 — Voice Search
+## Shipped Product
 
-- Microphone control inside the existing Home search field
-- Uses **browser-native speech recognition** (Web Speech API, including the WebKit-prefixed variant)
-- Recognized speech populates the existing search field and reuses the existing real-time partial-name filter
-- Listening can be stopped or cancelled
-- Manual typing remains available before and after voice use
-- Unsupported browsers, denied permission, and recognition errors fall back gracefully
+### V1 — MVP
 
-**Acceptance test result: 10 / 10 manual criteria passed.**
+- Add an item with **Item Name**, **Room / Area**, and **Exact Location**
+- Optional **Notes**
+- Real-time partial-name search
+- Item Details screen with the exact storage location emphasized
+- Edit any existing item
+- Delete with confirmation
+- localStorage persistence
+- Mobile-first responsive layout
+- No login or setup
 
-## Shipped Enhancement: V1.2 — Voice Add
+**Acceptance result: 10 / 10 manual criteria passed.**
 
-- **Add by voice** control on the existing Add Item form
-- Guided capture sequence for **Item Name → Room / Area → Exact Location → Notes**
-- Each spoken response fills the corresponding existing form field
+### V1.1 — Voice Search
+
+Voice Search was introduced to reduce retrieval friction when typing is inconvenient.
+
+- Microphone control inside the Home search field
+- Browser-native speech recognition
+- Recognized speech reuses the existing partial-name filter
+- Manual typing remains available
+- Unsupported browsers and permission failures fall back gracefully
+
+**Acceptance result: 10 / 10 manual criteria passed.**
+
+### V1.2 — Voice Add
+
+Voice Add was introduced to reduce capture friction without removing user control.
+
+- Guided capture for **Item Name → Room / Area → Exact Location → Notes**
+- Each spoken response fills the existing form field
 - Notes can be spoken or skipped
-- User can stop/cancel the guided flow
-- Voice-populated fields remain fully editable
-- The app **never auto-saves**; the user reviews the form and presses the existing Save Item button
-- Uses the same browser-native speech recognition approach as V1.1
-- Existing manual Add, Voice Search, validation, and localStorage behavior remain unchanged
+- Voice-populated fields remain editable
+- User can stop or cancel the guided flow
+- The app **never auto-saves**
+- The user reviews the captured values and explicitly presses **Save Item**
 
-**Acceptance test result: 14 / 14 manual criteria passed.**
+**Acceptance result: 14 / 14 manual criteria passed.**
 
-## Product Decision: localStorage for V1
+## Key Product Decisions
 
-localStorage was intentionally selected for V1. The core hypothesis to validate is the *single-device capture-and-retrieve loop*: can a person record a storage location in seconds and find it again later? A backend, accounts, and sync would add cost and scope without testing that loop any better. Multi-device and shared-household storage are deliberately deferred to the roadmap, where they are framed as distinct product bets rather than default infrastructure.
+### localStorage instead of a backend
+
+The first hypothesis to test was the **single-device capture-and-retrieve loop**. Accounts, authentication, cloud sync, and a backend would add scope without improving that initial test.
+
+Those capabilities are therefore treated as later product bets rather than default infrastructure.
+
+### Guided voice capture instead of one-shot AI parsing
+
+V1.2 captures one field at a time because the immediate goal is reducing typing friction while preserving predictable inputs and explicit user review.
+
+Conversational interpretation remains a future product capability.
+
+### No authentication in the MVP
+
+The initial product optimizes for immediate use. Requiring account creation would introduce friction before the core value proposition had been validated.
+
+## Product Management Artifacts
+
+- **[Product Requirements Document](PRD.md)** — problem, users, scope, stories, functional requirements, acceptance criteria, metrics, risks, tradeoffs, and enhancement requirements
+- **[Product Roadmap](docs/ROADMAP.md)** — completed releases and intentionally sequenced future bets
+- **[Acceptance Testing](docs/TESTING.md)** — manual test evidence for V1, V1.1, and V1.2
 
 ## Tech Stack
 
-- **TanStack Start** (React 19 full-stack framework, file-based routing via TanStack Router)
+- **TanStack Start**
+- **React 19**
 - **TypeScript**
-- **Vite** build tooling
-- **Tailwind CSS v4** with a custom semantic token theme
-- **shadcn/ui + Radix UI** primitives
-- **Web Speech API** (browser-native) for V1.1 Voice Search and V1.2 Voice Add
-- **localStorage** for data persistence
+- **Vite**
+- **Tailwind CSS v4**
+- **shadcn/ui + Radix UI**
+- **Web Speech API**
+- **localStorage**
 - Deployed via Lovable
 
-## Status
-
-- **V1 MVP — Completed.** Shipped baseline.
-- **V1.1 Voice Search — Completed.**
-- **V1.2 Voice Add — Completed.**
-
-## Acceptance Test Results
-
-- V1: **10 / 10 passed**
-- V1.1: **10 / 10 passed**
-- V1.2: **14 / 14 passed**
-
-See [docs/TESTING.md](docs/TESTING.md).
-
-## Future Roadmap (Summary)
+## Future Roadmap
 
 | Version | Theme | Status |
 | --- | --- | --- |
@@ -91,15 +127,20 @@ See [docs/TESTING.md](docs/TESTING.md).
 | V4 | QR storage labels | Planned concept |
 | V5 | Shared household inventory | Planned concept |
 
-Full detail: [docs/ROADMAP.md](docs/ROADMAP.md).
+See the full [Product Roadmap](docs/ROADMAP.md).
 
-## Product Management Approach
+## What This Project Demonstrates
 
-1. **Problem** — Framed a single, narrow user pain: forgetting where household items are stored.
-2. **PRD** — Wrote scope, non-goals, user stories, and acceptance criteria before building. See [PRD.md](PRD.md).
-3. **Prototype** — Built a working V1 rather than static mockups, so the retrieval loop could be exercised end to end.
-4. **Acceptance testing** — Validated the shipped baseline manually against pre-defined acceptance criteria.
-5. **Iteration** — Shipped V1.1 Voice Search to reduce retrieval friction, then V1.2 Voice Add to reduce capture friction while retaining explicit user review before save.
-6. **Roadmap** — Sequenced future bets from conversational retrieval to shared household inventory.
+1. **Problem framing** — Start with a narrow job to be done rather than a feature list.
+2. **MVP discipline** — Keep the first release focused on the capture-and-retrieve loop.
+3. **PRD ownership** — Define user stories, functional requirements, constraints, risks, and acceptance criteria before expanding scope.
+4. **Evidence-based iteration** — Validate each release against predefined acceptance criteria.
+5. **Product tradeoffs** — Explain why localStorage, no authentication, and guided voice capture are appropriate at the current stage.
+6. **Roadmap sequencing** — Treat future capabilities as product bets tied to specific friction rather than an undifferentiated wishlist.
+7. **Human control** — Voice input assists the user but does not silently persist data.
 
-*Note: this project has not been through user research, public release, or adoption/revenue measurement, and has no automated test coverage. No such claims are made.*
+## Validation Notes
+
+This project has **not** completed formal user research, public adoption measurement, revenue validation, automated test coverage, or a full accessibility/cross-browser audit.
+
+The documented PASS results refer specifically to **manual acceptance testing against the defined release criteria**. No broader product-market-fit or business-outcome claims are made.
