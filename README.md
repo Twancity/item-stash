@@ -2,6 +2,8 @@
 
 **Remember where you put everything.**
 
+**Live product:** https://stash-home-inventory.lovable.app
+
 Stash is a working, mobile-first product built to solve one simple household problem: **“Where did I put it?”**
 
 It demonstrates an end-to-end product workflow from problem framing and MVP definition through implementation, acceptance testing, iteration, and roadmap planning.
@@ -11,6 +13,7 @@ It demonstrates an end-to-end product workflow from problem framing and MVP defi
 | Area | Current state |
 | --- | --- |
 | Product stage | **V1, V1.1, and V1.2 shipped** |
+| Live demo | **https://stash-home-inventory.lovable.app** |
 | Core job | Record where an item is stored and retrieve that location later |
 | Product artifacts | [PRD](PRD.md) · [Roadmap](docs/ROADMAP.md) · [Acceptance Testing](docs/TESTING.md) |
 | Persistence | Browser localStorage |
