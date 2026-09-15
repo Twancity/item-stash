@@ -1,4 +1,10 @@
-# Stash — V1 Acceptance Testing
+# Stash — Acceptance Testing
+
+Manual acceptance testing records for each shipped release. No automated test suite exists; nothing in this document represents unit, integration, or automated regression coverage.
+
+---
+
+# V1 Acceptance Testing
 
 **Test type:** Manual MVP acceptance testing against the V1 build.
 **Scope:** The 10 acceptance criteria defined in the PRD before implementation.
