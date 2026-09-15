@@ -86,7 +86,7 @@ Full detail: [docs/ROADMAP.md](docs/ROADMAP.md).
 2. **PRD** — Wrote scope, non-goals, user stories, and acceptance criteria before building. See [PRD.md](PRD.md). The guiding rule: if a feature doesn't help answer "Where did I put it?" faster, it isn't in V1.
 3. **Prototype** — Built a working V1 rather than static mockups, so the retrieval loop could be exercised end to end.
 4. **Acceptance testing** — Ran the 10 pre-defined acceptance criteria manually against the build; all passed.
-5. **Iteration** — Kept V1 within its defined scope, deferring anything that did not shorten the path to "Where did I put it?".
+5. **Iteration** — Kept V1 within its defined scope, then shipped V1.1 Voice Search as the first scoped enhancement, again validated against 10 pre-defined criteria.
 6. **Roadmap** — Sequenced future bets from lowest-friction capture (voice) to highest-coordination value (shared household inventory).
 
 *Note: this project has not been through user research, public release, or adoption/revenue measurement, and has no automated test coverage. No such claims are made.*
