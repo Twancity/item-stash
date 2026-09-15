@@ -1,6 +1,6 @@
 # Stash — Product Roadmap
 
-Everything beyond V1 is a **planned concept**, not a shipped or committed feature. Sequencing runs from reducing capture friction, to improving retrieval, to expanding beyond a single person.
+Stash is being developed through small, validated releases. Completed versions are listed separately from future planned concepts.
 
 ---
 
@@ -14,21 +14,23 @@ Add an item with room/area, exact location, and optional notes. Real-time partia
 
 ## V1.1 — Voice Search — **Completed**
 
-A microphone control in the Home search field uses browser-native speech recognition to turn spoken words into the search term, reusing the existing real-time partial-name filter. Unsupported browsers, denied permission, and recognition errors fall back to manual search with a short message.
+A microphone control in the Home search field uses browser-native speech recognition to turn spoken words into the search term, reusing the existing real-time partial-name filter.
 
 **Result:** 10 / 10 acceptance criteria passed (manual testing).
 
 ---
 
-## V1.2 — Voice Add — *Planned concept*
+## V1.2 — Voice Add — **Completed**
 
-Spoken natural-language input (e.g. "Christmas lights are in the blue bin on the left shelf in the garage") is parsed into structured Item Name, Room / Area, and Exact Location fields, presented to the user for review and correction before saving. Targets the biggest remaining capture-friction cost: typing three fields.
+A guided browser-native voice flow on the Add Item screen captures Item Name, Room / Area, Exact Location, and optional Notes one field at a time. Recognized values populate the existing form, remain editable, and require explicit user review and Save Item before persistence.
+
+**Result:** 14 / 14 acceptance criteria passed (manual testing).
 
 ---
 
 ## V2 — Conversational Retrieval — *Planned concept*
 
-The user asks a question in natural language — "Where did I put my Christmas lights?" — and receives the stored location as a direct answer, rather than matching exact item names. Removes the requirement that the user remember what they named an item.
+The user asks a natural-language question such as "Where did I put my Christmas lights?" and receives the stored location directly.
 
 ---
 
@@ -46,4 +48,4 @@ Generate printable QR labels for bins and shelves. Scanning a label opens its co
 
 ## V5 — Shared Household Inventory — *Planned concept*
 
-Multiple household members share one inventory, so anyone can find or update where something lives. This is the point at which accounts and a synced backend become genuinely necessary — which is why they were deliberately excluded from V1.
+Multiple household members share one inventory, introducing the point at which accounts and a synced backend become genuinely necessary.
