@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Search, Plus, Box, MapPin, DoorOpen } from "lucide-react";
+import { Search, Plus, Box, MapPin, DoorOpen, Mic, Square } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
+import { useSpeechRecognition } from "@/hooks/use-speech-recognition";
 import { useStash } from "@/lib/stash-store";
 
 export const Route = createFileRoute("/")({
