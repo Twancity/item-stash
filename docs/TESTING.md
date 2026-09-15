@@ -6,13 +6,8 @@ Manual acceptance testing records for each shipped release. No automated test su
 
 # V1 Acceptance Testing
 
-**Test type:** Manual MVP acceptance testing against the V1 build.
-**Scope:** The 10 acceptance criteria defined in the PRD before implementation.
+**Test type:** Manual MVP acceptance testing against the V1 build.  
 **Overall result:** **10 / 10 PASS**
-
-No automated test suite exists for V1. Results below come from manual execution of each criterion; nothing here represents unit, integration, or automated regression coverage.
-
-## Results
 
 | # | Acceptance Criterion | Result |
 | --- | --- | --- |
@@ -27,29 +22,12 @@ No automated test suite exists for V1. Results below come from manual execution 
 | 9 | The experience works on mobile and desktop | PASS |
 | 10 | No authentication is required | PASS |
 
-## Notes
-
-- Partial-name search was verified with the term "Christmas" returning "Christmas Lights".
-- Persistence was verified by adding an item, reloading the browser, and confirming the item was still listed.
-- Deletion was verified to require an explicit confirmation before the item was removed.
-- No defect history was documented for V1; only the pass/fail outcome of each acceptance criterion above was recorded.
-
-## Not Covered in V1
-
-- Automated / regression test suite
-- Cross-browser matrix testing
-- Accessibility audit beyond contrast and touch-target sizing during design
-- Performance testing at large item counts
-
 ---
 
 # V1.1 Voice Search — Acceptance Testing
 
-**Test type:** Manual acceptance testing against the V1.1 build. This is manual acceptance testing, not automated test coverage.
-**Scope:** The 10 acceptance criteria defined for V1.1 before implementation.
+**Test type:** Manual acceptance testing against the V1.1 build.  
 **Overall result:** **10 / 10 PASS**
-
-## Results
 
 | # | Acceptance Criterion | Result |
 | --- | --- | --- |
@@ -64,15 +42,43 @@ No automated test suite exists for V1. Results below come from manual execution 
 | 9 | Existing V1 add/edit/delete/details/localStorage workflows remain unchanged | PASS |
 | 10 | Mobile and desktop layouts remain usable | PASS |
 
-## Notes
+---
 
-- Voice input uses browser-native speech recognition only; the transcript is placed into the existing search field and filtered by the existing V1 search logic.
-- Browsers without built-in speech recognition show a message directing the user to type, and manual search remains fully functional.
-- Only the pass/fail outcome of each criterion above was recorded; no defect history was documented.
+# V1.2 Voice Add — Acceptance Testing
 
-## Not Covered in V1.1
+**Test type:** Manual acceptance testing against the V1.2 build.  
+**Overall result:** **14 / 14 PASS**
 
-- Automated / regression test suite
+| # | Acceptance Criterion | Result |
+| --- | --- | --- |
+| 1 | Add by voice control appears on Add Item screen | PASS |
+| 2 | Tapping it starts the guided voice flow when supported | PASS |
+| 3 | Spoken item name populates Item Name | PASS |
+| 4 | Spoken room/area populates Room / Area | PASS |
+| 5 | Spoken exact location populates Exact Location | PASS |
+| 6 | Notes can be spoken or skipped | PASS |
+| 7 | User can stop/cancel the voice flow | PASS |
+| 8 | Populated fields remain editable manually | PASS |
+| 9 | Item is not automatically saved; user must tap Save Item | PASS |
+| 10 | Existing manual Add Item flow still works normally | PASS |
+| 11 | Existing Voice Search still works normally | PASS |
+| 12 | Permission/failure/unsupported scenarios fall back gracefully without breaking the form | PASS |
+| 13 | Saved voice-entered items persist through existing localStorage behavior | PASS |
+| 14 | Mobile and desktop layouts remain usable | PASS |
+
+## V1.2 Notes
+
+- Voice Add uses a guided sequence rather than one-shot AI parsing.
+- Browser-native speech recognition fills the existing form fields one at a time.
+- The user retains final control: recognized values can be edited before save.
+- Voice Add never automatically saves an item.
+- Notes are optional and can be skipped.
+- Existing validation and localStorage persistence remain unchanged.
+
+## Not Covered
+
+- Automated / regression testing
 - Full cross-browser and cross-device matrix testing
 - Formal accessibility audit
-- Recognition accuracy measurement across accents, languages, or noisy environments
+- Speech-recognition accuracy measurement across accents, languages, or noisy environments
+- Public user testing or adoption measurement
