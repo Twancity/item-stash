@@ -25,6 +25,19 @@ People store household items — tools, seasonal decorations, cables, documents,
 - **Responsive** mobile-first layout that also works on desktop
 - No login, no account, no setup
 
+## Shipped Enhancement: V1.1 — Voice Search
+
+- Microphone control inside the existing Home search field
+- Uses **browser-native speech recognition** (Web Speech API, including the WebKit-prefixed variant) — no external services, AI services, backend, or new dependencies
+- The recognized transcript populates the existing search field and **reuses the existing real-time partial-name filter**; there is no second search engine or separate results screen
+- Listening state is shown visually and exposed to assistive technology; the user can stop or cancel at any time
+- Manual typing works exactly as in V1, before and after voice use
+- Unsupported browsers, denied permission, and recognition errors fall back gracefully with a short message
+
+**Acceptance test result: 10 / 10 manual criteria passed.** See [docs/TESTING.md](docs/TESTING.md).
+
+Browser note: built-in speech recognition is available in Chrome, Edge, and Safari; browsers without it (for example Firefox) fall back to manual search.
+
 ## Product Decision: localStorage for V1
 
 localStorage was intentionally selected for V1. The core hypothesis to validate is the *single-device capture-and-retrieve loop*: can a person record a storage location in seconds and find it again later? A backend, accounts, and sync would add cost and scope without testing that loop any better. Multi-device and shared-household storage are deliberately deferred to the roadmap, where they are framed as distinct product bets rather than default infrastructure.
@@ -36,23 +49,28 @@ localStorage was intentionally selected for V1. The core hypothesis to validate 
 - **Vite** build tooling
 - **Tailwind CSS v4** with a custom semantic token theme
 - **shadcn/ui + Radix UI** primitives
+- **Web Speech API** (browser-native) for V1.1 voice search
 - **localStorage** for data persistence
 - Deployed via Lovable
 
-## MVP Status
+## Status
 
-**Completed.**
+- **V1 MVP — Completed.** Shipped baseline.
+- **V1.1 Voice Search — Completed.**
 
-## Acceptance Test Result
+## Acceptance Test Results
 
-**10 / 10 passed.** See [docs/TESTING.md](docs/TESTING.md).
+- V1: **10 / 10 passed**
+- V1.1: **10 / 10 passed**
+
+See [docs/TESTING.md](docs/TESTING.md).
 
 ## Future Roadmap (Summary)
 
 | Version | Theme | Status |
 | --- | --- | --- |
 | V1 | MVP — add, search, details, edit, delete, local persistence | Completed |
-| V1.1 | Voice Search | Planned concept |
+| V1.1 | Voice Search | Completed |
 | V1.2 | Voice Add | Planned concept |
 | V2 | Conversational Retrieval | Planned concept |
 | V3 | Photo recognition / storage-bin image assistance | Planned concept |
@@ -60,6 +78,7 @@ localStorage was intentionally selected for V1. The core hypothesis to validate 
 | V5 | Shared household inventory | Planned concept |
 
 Full detail: [docs/ROADMAP.md](docs/ROADMAP.md).
+
 
 ## Product Management Approach
 
