@@ -25,6 +25,19 @@ People store household items — tools, seasonal decorations, cables, documents,
 - **Responsive** mobile-first layout that also works on desktop
 - No login, no account, no setup
 
+## Shipped Enhancement: V1.1 — Voice Search
+
+- Microphone control inside the existing Home search field
+- Uses **browser-native speech recognition** (Web Speech API, including the WebKit-prefixed variant) — no external services, AI services, backend, or new dependencies
+- The recognized transcript populates the existing search field and **reuses the existing real-time partial-name filter**; there is no second search engine or separate results screen
+- Listening state is shown visually and exposed to assistive technology; the user can stop or cancel at any time
+- Manual typing works exactly as in V1, before and after voice use
+- Unsupported browsers, denied permission, and recognition errors fall back gracefully with a short message
+
+**Acceptance test result: 10 / 10 manual criteria passed.** See [docs/TESTING.md](docs/TESTING.md).
+
+Browser note: built-in speech recognition is available in Chrome, Edge, and Safari; browsers without it (for example Firefox) fall back to manual search.
+
 ## Product Decision: localStorage for V1
 
 localStorage was intentionally selected for V1. The core hypothesis to validate is the *single-device capture-and-retrieve loop*: can a person record a storage location in seconds and find it again later? A backend, accounts, and sync would add cost and scope without testing that loop any better. Multi-device and shared-household storage are deliberately deferred to the roadmap, where they are framed as distinct product bets rather than default infrastructure.
@@ -36,23 +49,28 @@ localStorage was intentionally selected for V1. The core hypothesis to validate 
 - **Vite** build tooling
 - **Tailwind CSS v4** with a custom semantic token theme
 - **shadcn/ui + Radix UI** primitives
+- **Web Speech API** (browser-native) for V1.1 voice search
 - **localStorage** for data persistence
 - Deployed via Lovable
 
-## MVP Status
+## Status
 
-**Completed.**
+- **V1 MVP — Completed.** Shipped baseline.
+- **V1.1 Voice Search — Completed.**
 
-## Acceptance Test Result
+## Acceptance Test Results
 
-**10 / 10 passed.** See [docs/TESTING.md](docs/TESTING.md).
+- V1: **10 / 10 passed**
+- V1.1: **10 / 10 passed**
+
+See [docs/TESTING.md](docs/TESTING.md).
 
 ## Future Roadmap (Summary)
 
 | Version | Theme | Status |
 | --- | --- | --- |
 | V1 | MVP — add, search, details, edit, delete, local persistence | Completed |
-| V1.1 | Voice Search | Planned concept |
+| V1.1 | Voice Search | Completed |
 | V1.2 | Voice Add | Planned concept |
 | V2 | Conversational Retrieval | Planned concept |
 | V3 | Photo recognition / storage-bin image assistance | Planned concept |
@@ -61,13 +79,14 @@ localStorage was intentionally selected for V1. The core hypothesis to validate 
 
 Full detail: [docs/ROADMAP.md](docs/ROADMAP.md).
 
+
 ## Product Management Approach
 
 1. **Problem** — Framed a single, narrow user pain: forgetting where household items are stored.
 2. **PRD** — Wrote scope, non-goals, user stories, and acceptance criteria before building. See [PRD.md](PRD.md). The guiding rule: if a feature doesn't help answer "Where did I put it?" faster, it isn't in V1.
 3. **Prototype** — Built a working V1 rather than static mockups, so the retrieval loop could be exercised end to end.
 4. **Acceptance testing** — Ran the 10 pre-defined acceptance criteria manually against the build; all passed.
-5. **Iteration** — Kept V1 within its defined scope, deferring anything that did not shorten the path to "Where did I put it?".
+5. **Iteration** — Kept V1 within its defined scope, then shipped V1.1 Voice Search as the first scoped enhancement, again validated against 10 pre-defined criteria.
 6. **Roadmap** — Sequenced future bets from lowest-friction capture (voice) to highest-coordination value (shared household inventory).
 
 *Note: this project has not been through user research, public release, or adoption/revenue measurement, and has no automated test coverage. No such claims are made.*
