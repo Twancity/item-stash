@@ -1,20 +1,34 @@
 import { useState, type FormEvent } from "react";
+import { Mic, Square, SkipForward } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { useGuidedSpeech } from "@/hooks/use-guided-speech";
 import type { StashItem } from "@/lib/stash-store";
 
 type Values = Omit<StashItem, "id">;
+
+const VOICE_STEPS = ["name", "room", "location", "notes"] as const;
+type VoiceStep = (typeof VOICE_STEPS)[number];
+
+const STEP_PROMPTS: Record<VoiceStep, string> = {
+  name: "Say the item name",
+  room: "Say the room or area",
+  location: "Say the exact location",
+  notes: "Say notes, or skip",
+};
 
 export function ItemForm({
   initial,
   submitLabel,
   onSubmit,
+  enableVoice = false,
 }: {
   initial?: Values;
   submitLabel: string;
   onSubmit: (values: Values) => void;
+  enableVoice?: boolean;
 }) {
   const [name, setName] = useState(initial?.name ?? "");
   const [room, setRoom] = useState(initial?.room ?? "");
