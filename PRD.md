@@ -1,7 +1,7 @@
-# Stash — Product Requirements Document (V1, plus V1.1 enhancement)
+# Stash — Product Requirements Document (V1, V1.1, V1.2)
 
-**Tagline:** Remember where you put everything.
-**Status:** V1 MVP completed. V1.1 Voice Search completed.
+**Tagline:** Remember where you put everything.  
+**Status:** V1 MVP completed. V1.1 Voice Search completed. V1.2 Voice Add completed.
 
 ## 1. Product Overview
 
@@ -62,15 +62,15 @@ Plus: edit flow for all fields, delete with confirmation, and localStorage persi
 
 - **FR-1** Item Name, Room / Area, and Exact Location are required; save is blocked until all three are provided.
 - **FR-2** Notes are optional and only rendered on the details screen when present.
-- **FR-3** Search filters the item list in real time on partial, case-insensitive item-name matches (e.g. "christmas" matches "Christmas Lights").
+- **FR-3** Search filters the item list in real time on partial, case-insensitive item-name matches.
 - **FR-4** Selecting an item opens its details screen.
 - **FR-5** The exact storage location is the most visually prominent element on the details screen.
 - **FR-6** Edit pre-fills all current values and applies updates immediately on save.
 - **FR-7** Delete requires an explicit confirmation before removal.
 - **FR-8** After adding or editing, the user is returned to the relevant screen with the change visible.
 - **FR-9** All items are persisted to browser localStorage and reloaded on startup.
-- **FR-10** Empty state: "Nothing stashed yet." with "Add your first item so you never have to wonder where you put it again." and an Add Item button.
-- **FR-11** Search empty state: "We couldn't find that in your Stash."
+- **FR-10** Empty state provides an Add Item path.
+- **FR-11** Search empty state explains no match was found.
 - **FR-12** Layout is mobile-first and responsive to desktop, with touch-friendly targets and accessible contrast.
 
 ## 9. Acceptance Criteria — V1 Results
@@ -92,9 +92,7 @@ Plus: edit flow for all fields, delete with confirmation, and localStorage persi
 
 ## 10. Success Metrics (proposed, not yet collected)
 
-These are the metrics defined to evaluate Stash once it is in real use. No data has been collected to date.
-
-- **Time to capture** — median seconds from opening Add Item to saving (target: under 20s)
+- **Time to capture** — median seconds from opening Add Item to saving
 - **Time to retrieve** — median seconds from opening the app to viewing an item's details
 - **Search success rate** — share of searches that end in an item being opened
 - **Retention of the loop** — share of users who return to search after an initial add session
@@ -104,68 +102,94 @@ These are the metrics defined to evaluate Stash once it is in real use. No data 
 
 | Risk | Impact | Mitigation / position |
 | --- | --- | --- |
-| localStorage is device- and browser-scoped | Data does not follow the user across devices | Accepted for V1; sync is a roadmap decision, not a default |
-| Clearing browser data erases the inventory | Total data loss | Accepted for V1; export/backup is a candidate for a later release |
-| Capture friction may still be too high when typing | Users stop logging items | Voice capture (V1.1 / V1.2) directly targets this |
+| localStorage is device- and browser-scoped | Data does not follow the user across devices | Accepted for V1; sync is a roadmap decision |
+| Clearing browser data erases the inventory | Total data loss | Accepted for V1; export/backup is a later candidate |
+| Capture friction may still be too high when typing | Users stop logging items | V1.2 Voice Add targets this |
 | Search is name-only | Users who forget the item's name can't find it | Conversational retrieval (V2) targets this |
 | Single-user model | No value for shared households | Addressed intentionally at V5 |
 
 ## 12. Product Decisions and Tradeoffs
 
-- **localStorage over a backend.** V1 tests the capture-and-retrieve loop on one device. Adding a database and accounts would increase scope and setup friction without improving the test.
-- **No authentication.** Sign-up is the largest drop-off point for a utility this small. Zero-friction entry was prioritized.
-- **Name-only search.** Room and location filtering were cut to keep the interaction to one input field. Broader retrieval is a V2 concern.
-- **Three screens, hard scope cap.** Any feature that does not shorten the path to "Where did I put it?" was excluded.
-- **Exact location given visual dominance.** The details screen is designed around the one field the user actually came for.
-- **Sample data seeded on first run.** Makes the search behavior legible immediately instead of presenting a cold empty app during development and demos.
+- **localStorage over a backend.** V1 tests the capture-and-retrieve loop on one device.
+- **No authentication.** Zero-friction entry was prioritized.
+- **Name-only search.** Broader retrieval was deferred.
+- **Three screens, hard scope cap.** Features outside the core job were excluded.
+- **Exact location given visual dominance.** The details screen emphasizes the answer the user came for.
+- **Sample data seeded on first run.** Makes the core workflow visible immediately.
 
 ## 13. V1.1 Enhancement — Voice Search (Completed)
 
-The V1 sections above are preserved as written at the time of the MVP. This section records the first scoped enhancement shipped after V1.
-
-**Problem / opportunity.** Typing into the search field is the remaining friction in retrieval, especially one-handed in a garage or while holding a box. Voice input shortens the path to "Where did I put it?" without changing the data model.
+**Problem / opportunity.** Reduce retrieval friction when typing is inconvenient.
 
 **User story.** As a Stash user, I want to search by voice so I can find an item without typing.
 
 **Scope.**
-- Microphone control inside the existing Home search field, with an accessible label and a mobile-friendly touch target
-- Browser-native speech-to-text (Web Speech API, including the WebKit-prefixed variant); the transcript populates the existing search input
-- The existing real-time partial-name filter is reused unchanged — no second search engine, no separate voice-results screen
-- Visible and accessible listening state; the user can stop or cancel listening
-- Manual typing preserved as the fallback and as the primary input path
+- Microphone control inside the existing Home search field
+- Browser-native speech-to-text
+- Existing partial-name filter reused
+- Visible listening state
+- Manual typing preserved
 
 **Non-goals.**
-- Voice Add (spoken item capture) — remains V1.2
-- AI interpretation or conversational retrieval — remains V2
-- Backend services, cloud sync, accounts, or authentication changes
-- New third-party or paid dependencies
+- Voice Add
+- AI interpretation or conversational retrieval
+- Backend or account changes
+- Paid third-party dependencies
 
-**Graceful degradation.** Unsupported browsers, denied microphone permission, and recognition errors each show a concise message and leave manual search fully available.
+**Result:** **10 / 10 PASS** in manual acceptance testing.
 
-**Acceptance criteria — V1.1 results**
+## 14. V1.2 Enhancement — Voice Add (Completed)
+
+**Problem / opportunity.** Reduce capture friction on the Add Item form while preserving user control over the saved data.
+
+**User story.** As a Stash user, I want to add an item's details by voice so I can log where I stored something without typing every field.
+
+**Scope.**
+- Add by voice control on the existing Add Item screen
+- Guided voice sequence for Item Name, Room / Area, Exact Location, and optional Notes
+- Each spoken response populates the existing form field
+- Automatic advancement between guided steps
+- Notes can be spoken or skipped
+- User can stop/cancel the flow
+- All populated fields remain manually editable
+- Existing Save Item action remains mandatory; no automatic save
+- Existing validation, localStorage persistence, and Voice Search remain unchanged
+
+**Non-goals.**
+- One-shot AI parsing of a full sentence
+- Automatic saving
+- Voice Add on Edit Item
+- Conversational retrieval
+- Backend, accounts, cloud sync, photo recognition, QR labels, or sharing
+
+**Acceptance criteria — V1.2 results**
 
 | # | Criterion | Result |
 | --- | --- | --- |
-| 1 | Microphone control appears in the existing search field | PASS |
-| 2 | Tapping microphone starts listening when supported | PASS |
-| 3 | Spoken item name populates the search field | PASS |
-| 4 | Spoken partial item name filters the existing list correctly | PASS |
-| 5 | User can stop/cancel voice input | PASS |
-| 6 | Manual text search still works normally | PASS |
-| 7 | Permission denial/failure does not crash the app and shows a helpful message | PASS |
-| 8 | Unsupported browsers fall back gracefully to manual search | PASS |
-| 9 | Existing V1 add/edit/delete/details/localStorage workflows remain unchanged | PASS |
-| 10 | Mobile and desktop layouts remain usable | PASS |
+| 1 | Add by voice control appears on Add Item screen | PASS |
+| 2 | Tapping it starts the guided voice flow when supported | PASS |
+| 3 | Spoken item name populates Item Name | PASS |
+| 4 | Spoken room/area populates Room / Area | PASS |
+| 5 | Spoken exact location populates Exact Location | PASS |
+| 6 | Notes can be spoken or skipped | PASS |
+| 7 | User can stop/cancel the voice flow | PASS |
+| 8 | Populated fields remain editable manually | PASS |
+| 9 | Item is not automatically saved; user must tap Save Item | PASS |
+| 10 | Existing manual Add Item flow still works normally | PASS |
+| 11 | Existing Voice Search still works normally | PASS |
+| 12 | Permission/failure/unsupported scenarios fall back gracefully | PASS |
+| 13 | Saved voice-entered items persist through existing localStorage behavior | PASS |
+| 14 | Mobile and desktop layouts remain usable | PASS |
 
-**Overall: 10 / 10 PASS** (manual acceptance testing).
+**Overall: 14 / 14 PASS** (manual acceptance testing).
 
-## 14. Future Roadmap
+## 15. Future Roadmap
 
 | Version | Theme | Status |
 | --- | --- | --- |
 | V1 | MVP | Completed |
 | V1.1 | Voice Search | Completed |
-| V1.2 | Voice Add | Planned concept |
+| V1.2 | Voice Add | Completed |
 | V2 | Conversational Retrieval | Planned concept |
 | V3 | Photo recognition / storage-bin image assistance | Planned concept |
 | V4 | QR storage labels | Planned concept |
