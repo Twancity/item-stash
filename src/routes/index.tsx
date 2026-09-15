@@ -29,6 +29,24 @@ export const Route = createFileRoute("/")({
 function Home() {
   const { items, loading } = useStash();
   const [query, setQuery] = useState("");
+  const [unsupportedNotice, setUnsupportedNotice] = useState<string | null>(null);
+  const { supported, listening, error, toggle, clearError } = useSpeechRecognition((text) =>
+    setQuery(text),
+  );
+
+  const notice = unsupportedNotice ?? error;
+
+  const handleMicClick = () => {
+    setUnsupportedNotice(null);
+    clearError();
+    if (!supported) {
+      setUnsupportedNotice(
+        "Voice search isn't supported in this browser. You can still type to search.",
+      );
+      return;
+    }
+    toggle();
+  };
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -59,9 +77,40 @@ function Home() {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search your stash…"
             aria-label="Search items by name"
-            className="h-14 rounded-2xl bg-card pl-12 text-base shadow-card"
+            className="h-14 rounded-2xl bg-card pr-16 pl-12 text-base shadow-card"
           />
+          <button
+            type="button"
+            onClick={handleMicClick}
+            aria-label={listening ? "Stop voice search" : "Search by voice"}
+            aria-pressed={listening}
+            className={cn(
+              "absolute top-1/2 right-2 flex size-11 -translate-y-1/2 items-center justify-center rounded-xl transition-colors",
+              listening
+                ? "bg-accent text-accent-foreground animate-pulse"
+                : "text-muted-foreground hover:bg-muted hover:text-foreground",
+            )}
+          >
+            {listening ? (
+              <Square className="size-5 fill-current" aria-hidden="true" />
+            ) : (
+              <Mic className="size-5" aria-hidden="true" />
+            )}
+          </button>
         </div>
+
+        <p aria-live="polite" className="sr-only">
+          {listening ? "Listening" : ""}
+        </p>
+        {listening ? (
+          <p className="px-1 text-sm font-medium text-accent">Listening… tap the square to stop.</p>
+        ) : null}
+        {notice ? (
+          <p role="status" className="px-1 text-sm text-muted-foreground">
+            {notice}
+          </p>
+        ) : null}
+
         <Button asChild size="lg" className="h-14 w-full rounded-2xl text-base">
           <Link to="/add">
             <Plus className="size-5" aria-hidden="true" />
