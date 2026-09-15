@@ -36,6 +36,16 @@ export function ItemForm({
   const [notes, setNotes] = useState(initial?.notes ?? "");
   const [error, setError] = useState<string | null>(null);
 
+  const voice = useGuidedSpeech(VOICE_STEPS, (step, text) => {
+    setError(null);
+    if (step === "name") setName(text);
+    if (step === "room") setRoom(text);
+    if (step === "location") setLocation(text);
+    if (step === "notes") setNotes(text);
+  });
+
+  const voiceActive = voice.activeStep !== null;
+
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (!name.trim() || !room.trim() || !location.trim()) {
@@ -48,11 +58,84 @@ export function ItemForm({
       location: location.trim(),
       ...(notes.trim() ? { notes: notes.trim() } : {}),
     });
+  }
 
+  function startVoiceAdd() {
+    setError(null);
+    voice.clearError();
+    voice.start();
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {enableVoice ? (
+        <section
+          className="rounded-2xl border border-border bg-card p-4 shadow-sm"
+          aria-label="Voice add"
+        >
+          {!voiceActive ? (
+            <div className="space-y-3">
+              <Button
+                type="button"
+                variant="outline"
+                size="lg"
+                onClick={startVoiceAdd}
+                className="h-12 w-full rounded-xl"
+                aria-label="Add item by voice"
+              >
+                <Mic className="mr-2 size-5" aria-hidden="true" />
+                Add by voice
+              </Button>
+              <p className="text-sm text-muted-foreground">
+                Speak each detail one at a time. You can review and edit everything before saving.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              <div aria-live="polite">
+                <p className="text-sm font-semibold text-foreground">
+                  {voice.activeStep ? STEP_PROMPTS[voice.activeStep] : "Voice add"}
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {voice.listening ? "Listening…" : "Getting ready…"}
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={voice.cancel}
+                  className="h-11 flex-1 rounded-xl"
+                  aria-label="Stop voice add"
+                >
+                  <Square className="mr-2 size-4" aria-hidden="true" />
+                  Stop
+                </Button>
+
+                {voice.activeStep === "notes" ? (
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    onClick={voice.skip}
+                    className="h-11 flex-1 rounded-xl"
+                  >
+                    <SkipForward className="mr-2 size-4" aria-hidden="true" />
+                    Skip notes
+                  </Button>
+                ) : null}
+              </div>
+            </div>
+          )}
+
+          {voice.error ? (
+            <p role="status" className="mt-3 text-sm text-muted-foreground">
+              {voice.error}
+            </p>
+          ) : null}
+        </section>
+      ) : null}
+
       <div className="space-y-2">
         <Label htmlFor="name">Item name</Label>
         <Input
@@ -63,6 +146,7 @@ export function ItemForm({
           className="h-12 rounded-xl bg-card text-base"
         />
       </div>
+
       <div className="space-y-2">
         <Label htmlFor="room">Room / area</Label>
         <Input
@@ -73,6 +157,7 @@ export function ItemForm({
           className="h-12 rounded-xl bg-card text-base"
         />
       </div>
+
       <div className="space-y-2">
         <Label htmlFor="location">Exact location</Label>
         <Input
@@ -83,6 +168,7 @@ export function ItemForm({
           className="h-12 rounded-xl bg-card text-base"
         />
       </div>
+
       <div className="space-y-2">
         <Label htmlFor="notes">
           Notes <span className="text-muted-foreground">(optional)</span>
