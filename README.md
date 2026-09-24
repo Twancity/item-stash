@@ -23,7 +23,7 @@ It demonstrates an end-to-end product workflow from problem framing and MVP defi
 
 ## Problem
 
-People store household items — tools, seasonal decorations, cables, documents, spare parts, supplies — in places they cannot recall weeks or months later. The result is wasted time searching, duplicate purchases, and low-grade household friction.
+People store household items such as tools, seasonal decorations, cables, documents, spare parts, and supplies in places they cannot recall weeks or months later. The result is wasted time searching, duplicate purchases, and low-grade household friction.
 
 Stash exists to answer one question faster:
 
@@ -42,7 +42,7 @@ Reduce the time it takes a person to retrieve the location of a stored household
 
 ## Shipped Product
 
-### V1 — MVP
+### V1: MVP
 
 - Add an item with **Item Name**, **Room / Area**, and **Exact Location**
 - Optional **Notes**
@@ -56,7 +56,7 @@ Reduce the time it takes a person to retrieve the location of a stored household
 
 **Acceptance result: 10 / 10 manual criteria passed.**
 
-### V1.1 — Voice Search
+### V1.1: Voice Search
 
 Voice Search was introduced to reduce retrieval friction when typing is inconvenient.
 
@@ -68,7 +68,7 @@ Voice Search was introduced to reduce retrieval friction when typing is inconven
 
 **Acceptance result: 10 / 10 manual criteria passed.**
 
-### V1.2 — Voice Add
+### V1.2: Voice Add
 
 Voice Add was introduced to reduce capture friction without removing user control.
 
@@ -102,9 +102,9 @@ The initial product optimizes for immediate use. Requiring account creation woul
 
 ## Product Management Artifacts
 
-- **[Product Requirements Document](PRD.md)** — problem, users, scope, stories, functional requirements, acceptance criteria, metrics, risks, tradeoffs, and enhancement requirements
-- **[Product Roadmap](docs/ROADMAP.md)** — completed releases and intentionally sequenced future bets
-- **[Acceptance Testing](docs/TESTING.md)** — manual test evidence for V1, V1.1, and V1.2
+- **[Product Requirements Document](PRD.md)**: problem, users, scope, stories, functional requirements, acceptance criteria, metrics, risks, tradeoffs, and enhancement requirements
+- **[Product Roadmap](docs/ROADMAP.md)**: completed releases and intentionally sequenced future bets
+- **[Acceptance Testing](docs/TESTING.md)**: manual test evidence for V1, V1.1, and V1.2
 
 ## Tech Stack
 
@@ -122,7 +122,7 @@ The initial product optimizes for immediate use. Requiring account creation woul
 
 | Version | Theme | Status |
 | --- | --- | --- |
-| V1 | MVP — add, search, details, edit, delete, local persistence | Completed |
+| V1 | MVP: add, search, details, edit, delete, local persistence | Completed |
 | V1.1 | Voice Search | Completed |
 | V1.2 | Voice Add | Completed |
 | V2 | Conversational Retrieval | Planned concept |
@@ -134,13 +134,13 @@ See the full [Product Roadmap](docs/ROADMAP.md).
 
 ## What This Project Demonstrates
 
-1. **Problem framing** — Start with a narrow job to be done rather than a feature list.
-2. **MVP discipline** — Keep the first release focused on the capture-and-retrieve loop.
-3. **PRD ownership** — Define user stories, functional requirements, constraints, risks, and acceptance criteria before expanding scope.
-4. **Evidence-based iteration** — Validate each release against predefined acceptance criteria.
-5. **Product tradeoffs** — Explain why localStorage, no authentication, and guided voice capture are appropriate at the current stage.
-6. **Roadmap sequencing** — Treat future capabilities as product bets tied to specific friction rather than an undifferentiated wishlist.
-7. **Human control** — Voice input assists the user but does not silently persist data.
+1. **Problem framing**: Start with a narrow job to be done rather than a feature list.
+2. **MVP discipline**: Keep the first release focused on the capture-and-retrieve loop.
+3. **PRD ownership**: Define user stories, functional requirements, constraints, risks, and acceptance criteria before expanding scope.
+4. **Evidence-based iteration**: Validate each release against predefined acceptance criteria.
+5. **Product tradeoffs**: Explain why localStorage, no authentication, and guided voice capture are appropriate at the current stage.
+6. **Roadmap sequencing**: Treat future capabilities as product bets tied to specific friction rather than an undifferentiated wishlist.
+7. **Human control**: Voice input assists the user but does not silently persist data.
 
 ## Validation Notes
 

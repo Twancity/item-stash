@@ -1,4 +1,4 @@
-# Stash — Acceptance Testing
+# Stash: Acceptance Testing
 
 Manual acceptance testing records for each shipped release. No automated test suite exists; nothing in this document represents unit, integration, or automated regression coverage.
 
@@ -24,7 +24,7 @@ Manual acceptance testing records for each shipped release. No automated test su
 
 ---
 
-# V1.1 Voice Search — Acceptance Testing
+# V1.1 Voice Search: Acceptance Testing
 
 **Test type:** Manual acceptance testing against the V1.1 build.  
 **Overall result:** **10 / 10 PASS**
@@ -44,7 +44,7 @@ Manual acceptance testing records for each shipped release. No automated test su
 
 ---
 
-# V1.2 Voice Add — Acceptance Testing
+# V1.2 Voice Add: Acceptance Testing
 
 **Test type:** Manual acceptance testing against the V1.2 build.  
 **Overall result:** **14 / 14 PASS**
