@@ -1,4 +1,4 @@
-# Stash — Product Requirements Document (V1, V1.1, V1.2)
+# Stash: Product Requirements Document (V1, V1.1, V1.2)
 
 **Tagline:** Remember where you put everything.  
 **Status:** V1 MVP completed. V1.1 Voice Search completed. V1.2 Voice Add completed.
@@ -9,7 +9,7 @@ Stash is a responsive, mobile-first web application for recording where househol
 
 ## 2. Problem Statement
 
-Household items are stored in places people cannot recall later — bins, drawers, shelves, closets, attics. The assumed cost is repeated searching, duplicate purchases, and frustration.
+Household items are stored in places people cannot recall later, such as bins, drawers, shelves, closets, and attics. The assumed cost is repeated searching, duplicate purchases, and frustration.
 
 *Unvalidated hypothesis (not yet tested with users):* existing home-inventory tools are oriented toward cataloging and valuation rather than fast retrieval, leaving the "where is it right now?" question underserved.
 
@@ -38,9 +38,9 @@ Reduce the time it takes a person to answer **"Where did I put it?"** to a few s
 
 Three screens only:
 
-1. **Home / Search** — logo, tagline, prominent search field, Add Item button, list of saved items (name, room/area, exact location).
-2. **Add Item** — form with Item Name (required), Room / Area (required), Exact Location (required), Notes (optional), Save Item.
-3. **Item Details** — name, room, exact location (visually dominant), notes if present, Edit and Delete actions.
+1. **Home / Search**: logo, tagline, prominent search field, Add Item button, list of saved items (name, room/area, exact location).
+2. **Add Item**: form with Item Name (required), Room / Area (required), Exact Location (required), Notes (optional), Save Item.
+3. **Item Details**: name, room, exact location (visually dominant), notes if present, Edit and Delete actions.
 
 Plus: edit flow for all fields, delete with confirmation, and localStorage persistence.
 
@@ -73,7 +73,7 @@ Plus: edit flow for all fields, delete with confirmation, and localStorage persi
 - **FR-11** Search empty state explains no match was found.
 - **FR-12** Layout is mobile-first and responsive to desktop, with touch-friendly targets and accessible contrast.
 
-## 9. Acceptance Criteria — V1 Results
+## 9. Acceptance Criteria: V1 Results
 
 | # | Criterion | Result |
 | --- | --- | --- |
@@ -92,11 +92,11 @@ Plus: edit flow for all fields, delete with confirmation, and localStorage persi
 
 ## 10. Success Metrics (proposed, not yet collected)
 
-- **Time to capture** — median seconds from opening Add Item to saving
-- **Time to retrieve** — median seconds from opening the app to viewing an item's details
-- **Search success rate** — share of searches that end in an item being opened
-- **Retention of the loop** — share of users who return to search after an initial add session
-- **Items per active user** — proxy for whether capture friction is low enough to build a real inventory
+- **Time to capture**: median seconds from opening Add Item to saving
+- **Time to retrieve**: median seconds from opening the app to viewing an item's details
+- **Search success rate**: share of searches that end in an item being opened
+- **Retention of the loop**: share of users who return to search after an initial add session
+- **Items per active user**: proxy for whether capture friction is low enough to build a real inventory
 
 ## 11. Risks and Constraints
 
@@ -117,7 +117,7 @@ Plus: edit flow for all fields, delete with confirmation, and localStorage persi
 - **Exact location given visual dominance.** The details screen emphasizes the answer the user came for.
 - **Sample data seeded on first run.** Makes the core workflow visible immediately.
 
-## 13. V1.1 Enhancement — Voice Search (Completed)
+## 13. V1.1 Enhancement: Voice Search (Completed)
 
 **Problem / opportunity.** Reduce retrieval friction when typing is inconvenient.
 
@@ -138,7 +138,7 @@ Plus: edit flow for all fields, delete with confirmation, and localStorage persi
 
 **Result:** **10 / 10 PASS** in manual acceptance testing.
 
-## 14. V1.2 Enhancement — Voice Add (Completed)
+## 14. V1.2 Enhancement: Voice Add (Completed)
 
 **Problem / opportunity.** Reduce capture friction on the Add Item form while preserving user control over the saved data.
 
@@ -162,7 +162,7 @@ Plus: edit flow for all fields, delete with confirmation, and localStorage persi
 - Conversational retrieval
 - Backend, accounts, cloud sync, photo recognition, QR labels, or sharing
 
-**Acceptance criteria — V1.2 results**
+**Acceptance criteria: V1.2 results**
 
 | # | Criterion | Result |
 | --- | --- | --- |
